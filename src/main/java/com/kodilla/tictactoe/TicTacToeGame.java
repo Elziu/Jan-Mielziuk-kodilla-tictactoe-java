@@ -44,17 +44,17 @@ public class TicTacToeGame extends TicTacToeCore{
 
                     if (size == 10) {
 
-                         winRow = TicTacToeWinChecker.checkRow(board, currentPlayer, pointsRequiredToWin);
-                         winColum = TicTacToeWinChecker.checkColum(board, currentPlayer, pointsRequiredToWin);
+                         winRow = TicTacToeWinChecker.checkRowBigBoard(board, currentPlayer, pointsRequiredToWin);
+                         winColum = TicTacToeWinChecker.checkColumBigBoard(board, currentPlayer, pointsRequiredToWin);
                          winDiagonalDownRight = TicTacToeWinChecker.checkDiagonalDownRightBigBoard(board, currentPlayer, pointsRequiredToWin);
-                         winDiagonalUpRight = TicTacToeWinChecker.checkDiagonalUpRight(board, currentPlayer, pointsRequiredToWin);
+                         winDiagonalUpRight = TicTacToeWinChecker.checkDiagonalUpRightBigBoard(board, currentPlayer, pointsRequiredToWin);
 
                     } else {
 
-                        winRow = TicTacToeWinChecker.checkRow(board, currentPlayer, pointsRequiredToWin);
-                        winColum = TicTacToeWinChecker.checkColum(board, currentPlayer, pointsRequiredToWin);
-                        winDiagonalDownRight = TicTacToeWinChecker.checkDiagonalDownRightBigBoard(board, currentPlayer, pointsRequiredToWin);
-                        winDiagonalUpRight = TicTacToeWinChecker.checkDiagonalUpRight(board, currentPlayer, pointsRequiredToWin);
+                         winRow = checkRowSmallBoard(board, currentPlayer);
+                         winColum = checkColumSmallBoard(board,currentPlayer);
+                         winDiagonalDownRight = checkDiagonalDownRightSmallBoard(board,currentPlayer);
+                         winDiagonalUpRight = checkDiagonalUpRightSmallBoard(board, currentPlayer);
 
 
                     }
@@ -69,7 +69,6 @@ public class TicTacToeGame extends TicTacToeCore{
 
                         System.out.println("It is a draw!");
                         gameOn = false;
-
                     }
 
                     if (currentPlayer == 'X') {
@@ -107,15 +106,37 @@ public class TicTacToeGame extends TicTacToeCore{
 
                         moveCounter++;
 
-                        boolean winRow = checkRow(board, currentPlayer, pointsRequiredToWin);
-                        boolean winColum = checkColum(board, currentPlayer, pointsRequiredToWin);
-                        boolean winDiagonal1 = checkDiagonalDownRightBigBoard(board, currentPlayer, pointsRequiredToWin);
-                        boolean winDiagonal2 = checkDiagonalUpRight(board, currentPlayer, pointsRequiredToWin);
+                        boolean winRow = false;
+                        boolean winColum = false;
+                        boolean winDiagonalDownRight = false;
+                        boolean winDiagonalUpRight = false;
 
-                        if (winRow || winColum || winDiagonal1 || winDiagonal2) {
+                        if (size == 10) {
+
+                            winRow = TicTacToeWinChecker.checkRowBigBoard(board, currentPlayer, pointsRequiredToWin);
+                            winColum = TicTacToeWinChecker.checkColumBigBoard(board, currentPlayer, pointsRequiredToWin);
+                            winDiagonalDownRight = TicTacToeWinChecker.checkDiagonalDownRightBigBoard(board, currentPlayer, pointsRequiredToWin);
+                            winDiagonalUpRight = TicTacToeWinChecker.checkDiagonalUpRightBigBoard(board, currentPlayer, pointsRequiredToWin);
+
+                        } else {
+
+                            winRow = checkRowSmallBoard(board, currentPlayer);
+                            winColum = checkColumSmallBoard(board,currentPlayer);
+                            winDiagonalDownRight = checkDiagonalDownRightSmallBoard(board,currentPlayer);
+                            winDiagonalUpRight = checkDiagonalUpRightSmallBoard(board, currentPlayer);
+
+
+                        }
+
+                        if (winRow || winColum || winDiagonalDownRight || winDiagonalUpRight) {
                             TicTacToeCore.printBoard(board);
                             System.out.println("Congratulations!! " + currentPlayer + " is the winner!");
                             gameOn = false;
+                        } else if (moveCounter == boardSize) {
+
+                            System.out.println("It is a draw!");
+                            gameOn = false;
+
                         }
 
                         if (currentPlayer == 'X') {
@@ -131,12 +152,29 @@ public class TicTacToeGame extends TicTacToeCore{
 
                         moveCounter++;
 
-                        boolean winRow = checkRow(board, currentPlayer, pointsRequiredToWin);
-                        boolean winColum = checkColum(board, currentPlayer, pointsRequiredToWin);
-                        boolean winDiagonal1 = checkDiagonalDownRightBigBoard(board, currentPlayer, pointsRequiredToWin);
-                        boolean winDiagonal2 = checkDiagonalUpRight(board, currentPlayer, pointsRequiredToWin);
+                        boolean winRow = false;
+                        boolean winColum = false;
+                        boolean winDiagonalDownRight = false;
+                        boolean winDiagonalUpRight = false;
 
-                        if (winRow || winColum || winDiagonal1 || winDiagonal2) {
+                        if (size == 10) {
+
+                            winRow = TicTacToeWinChecker.checkRowBigBoard(board, currentPlayer, pointsRequiredToWin);
+                            winColum = TicTacToeWinChecker.checkColumBigBoard(board, currentPlayer, pointsRequiredToWin);
+                            winDiagonalDownRight = TicTacToeWinChecker.checkDiagonalDownRightBigBoard(board, currentPlayer, pointsRequiredToWin);
+                            winDiagonalUpRight = TicTacToeWinChecker.checkDiagonalUpRightBigBoard(board, currentPlayer, pointsRequiredToWin);
+
+                        } else {
+
+                            winRow = checkRowSmallBoard(board, currentPlayer);
+                            winColum = checkColumSmallBoard(board,currentPlayer);
+                            winDiagonalDownRight = checkDiagonalDownRightSmallBoard(board,currentPlayer);
+                            winDiagonalUpRight = checkDiagonalUpRightSmallBoard(board, currentPlayer);
+
+
+                        }
+
+                        if (winRow || winColum || winDiagonalDownRight || winDiagonalUpRight) {
                             TicTacToeCore.printBoard(board);
                             System.out.println("Congratulations!! " + currentPlayer + " is the winner!");
                             gameOn = false;
